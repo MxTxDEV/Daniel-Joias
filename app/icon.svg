@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Favicon provisório. Ao receber a logo oficial, substituir por
+       public/images/marca/logo-claro.svg e regenerar este ícone a partir dela. -->
+  <rect width="64" height="64" fill="#080808"/>
+  <path d="M32 11 53 32 32 53 11 32Z" fill="none" stroke="#C6A15B" stroke-width="1.6"/>
+  <path d="M32 21.5 42.5 32 32 42.5 21.5 32Z" fill="none" stroke="#C6A15B" stroke-width="0.9" opacity="0.55"/>
+</svg>
