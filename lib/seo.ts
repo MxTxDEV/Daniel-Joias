@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/data/site';
 import { priceToNumber } from '@/lib/format';
-import { resolveImage } from '@/lib/images';
+import { resolveImage, resolveRef } from '@/lib/images';
 import type { Product } from '@/types';
 
 export function absoluteUrl(pathname = '/'): string {
@@ -96,7 +96,7 @@ export function websiteSchema() {
  */
 export function productSchema(product: Product) {
   const image = product.images
-    .map((ref) => resolveImage(ref.slot))
+    .map((ref) => resolveRef(ref))
     .filter((src): src is string => Boolean(src))
     .map((src) => absoluteUrl(src));
 

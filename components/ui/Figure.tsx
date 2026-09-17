@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { aspectClass, resolveImage, type AspectName } from '@/lib/images';
+import { aspectClass, resolveRef, type AspectName } from '@/lib/images';
 import { cn } from '@/lib/cn';
 import type { ImageRef } from '@/types';
 
@@ -44,7 +44,7 @@ export function Figure({
   fillParent = false,
   placeholder = 'caption',
 }: FigureProps) {
-  const src = resolveImage(image.slot);
+  const src = resolveRef(image);
   const ratio = aspect ?? image.aspect ?? 'editorial';
 
   return (

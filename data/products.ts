@@ -54,7 +54,7 @@ function gallery(slug: string, name: string, material: string): ImageRef[] {
   ];
 }
 
-export const products: Product[] = [
+const catalog: Product[] = [
   {
     slug: 'anel-signature-ouro-18k',
     name: 'Anel Signature',
@@ -440,6 +440,21 @@ export const products: Product[] = [
     isPlaceholder: true,
   },
 ];
+
+/**
+ * Cada peça herda dois conjuntos de fotografia, usados enquanto o shot
+ * próprio não existe: primeiro o da sua categoria (`categorias/aneis-01`…),
+ * depois o do seu metal (`materiais/ouro-01`…). Sem nenhum dos dois, vale o
+ * conjunto `editorial`. É o que permite apresentar o catálogo inteiro com
+ * poucas fotografias, sem repetir a mesma imagem em peças vizinhas.
+ */
+export const products: Product[] = catalog.map((product) => ({
+  ...product,
+  images: product.images.map((image) => ({
+    ...image,
+    pools: [`categorias/${product.category}`, `materiais/${product.metal}`],
+  })),
+}));
 
 /** Peças destacadas na home, na seção “Peças selecionadas”. */
 export const featuredProductSlugs = [

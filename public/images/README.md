@@ -7,10 +7,41 @@ ou textura gerada por IA fingindo ser uma joia.
 
 ## Como publicar uma fotografia
 
-1. Salve o arquivo em `public/images/<slot>.<ext>` — o `slot` é o nome listado abaixo.
-2. Formatos aceitos, em ordem de preferência: `.avif`, `.webp`, `.jpg`, `.png`
-   (para a logo, também `.svg`).
-3. Rode o build (`npm run build`) ou `npm run images:manifest`.
+**Caminho recomendado — o script cuida de redimensionar e comprimir:**
+
+1. Crie a pasta `fotos/` na raiz do projeto.
+2. Jogue as fotografias lá, nomeando cada arquivo com o slot de destino:
+   `hero-principal.jpg`, `colecoes-masculino.jpg`, `editorial-01.jpg`…
+   (também funciona em subpastas: `fotos/hero/principal.jpg`).
+3. Rode `npm run images:import`.
+4. Rode `npm run build`.
+
+O script corrige a orientação, redimensiona para a largura que o site usa,
+remove os metadados, converte para AVIF e grava em `public/images/`.
+A pasta `fotos/` não vai para o repositório.
+
+**Caminho manual:** salve o arquivo direto em `public/images/<slot>.<ext>`
+(`.avif`, `.webp`, `.jpg`, `.png`; para a logo, também `.svg`) e rode
+`npm run images:manifest`.
+
+## Poucas fotos preenchem o site inteiro
+
+Nenhum slot precisa existir para o site ficar apresentável. Quando a
+fotografia própria de um slot não existe, a resolução segue esta ordem:
+
+1. o slot exato — ex.: `produtos/anel-signature-01`
+2. o conjunto da categoria da peça — `categorias/aneis-01`, `-02`, `-03`…
+3. o conjunto do metal — `materiais/ouro-01`…, `materiais/prata-01`…
+4. o conjunto genérico — `editorial-01`, `editorial-02`…
+5. o placeholder editorial, com o briefing do shot
+
+A escolha dentro de um conjunto é estável: a mesma peça mostra sempre a mesma
+fotografia, e peças diferentes se distribuem pelo conjunto em vez de repetir a
+mesma imagem lado a lado.
+
+Na prática: **8 a 12 arquivos `editorial-NN` já deixam o site inteiro
+fotografado**, inclusive o catálogo. Depois é só ir substituindo pelos shots
+definitivos, slot por slot, sem tocar em código.
 
 Pronto: o `next/image` passa a servir a fotografia com AVIF/WebP, `srcset` responsivo e
 lazy loading. Nenhum componente precisa ser alterado.

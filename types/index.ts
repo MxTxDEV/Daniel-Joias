@@ -21,6 +21,14 @@ export interface ImageRef {
   /** Briefing da fotografia — aparece apenas no placeholder. */
   brief?: string;
   aspect?: 'portrait' | 'editorial' | 'square' | 'wide' | 'cinema';
+  /**
+   * Conjuntos de fotografias usados quando o slot exato ainda não existe.
+   * Cada prefixo aponta para arquivos numerados (`categorias/aneis-01`,
+   * `categorias/aneis-02`…); a variação escolhida é estável por slot, então
+   * a mesma peça mostra sempre a mesma imagem e peças diferentes se
+   * distribuem pelo conjunto. Todo slot cai, por último, em `editorial-NN`.
+   */
+  pools?: string[];
 }
 
 export interface ProductDetail {
