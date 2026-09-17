@@ -66,8 +66,9 @@ async function main() {
     }
   }
 
+  // Sem timestamp: a saída só muda quando as fotografias mudam, então o
+  // arquivo versionado não gera diff a cada build.
   const manifest = {
-    generatedAt: new Date().toISOString(),
     slots: Object.fromEntries(
       Object.entries(slots)
         .sort(([a], [b]) => a.localeCompare(b))

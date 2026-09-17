@@ -91,6 +91,20 @@ escondem conteúdo (`@media (scripting: none)`).
 **Performance.** Fontes auto-hospedadas via `next/font`; AVIF/WebP e `srcset` pelo
 `next/image`; `priority` apenas na fotografia do hero; proporção reservada em todo
 container de imagem (sem layout shift); páginas de coleção e produto pré-renderizadas.
+Medido no build de produção (desktop, sem throttling): **CLS 0** em todas as rotas,
+FCP ~0,15s e LCP ~1,0s na home. A entrada do hero anima apenas `scale` — animar
+`opacity` a partir de zero adiaria o LCP, porque o navegador só conta o elemento
+depois que ele fica visível.
+
+**Erros.** `app/error.tsx` (fronteira por rota, com “tentar novamente” e atendimento)
+e `app/global-error.tsx` (raiz, sem depender de layout, fontes ou Tailwind), além do
+404 em `app/not-found.tsx`.
+
+**Cabeçalhos.** `next.config.mjs` aplica `X-Content-Type-Options`, `X-Frame-Options`,
+`Referrer-Policy`, `Permissions-Policy` e HSTS em todas as rotas. Uma
+Content-Security-Policy ainda **não** foi adicionada: para não quebrar os scripts
+inline do Next ela precisa de nonce por requisição via middleware — é uma etapa
+própria, a fazer antes de abrir o domínio oficial.
 
 **Acessibilidade.** Navegação por teclado em todos os overlays (foco preso, Esc fecha,
 foco devolvido), foco visível em dourado, `aria-label`/`aria-expanded`/`aria-pressed`

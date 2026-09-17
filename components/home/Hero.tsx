@@ -24,12 +24,21 @@ export function Hero() {
 
   const container = {
     hidden: {},
-    visible: { transition: { delayChildren: 0.25, staggerChildren: 0.12 } },
+    visible: { transition: { delayChildren: 0.12, staggerChildren: 0.1 } },
   };
 
   const item = {
     hidden: { opacity: 0, y: 22 },
-    visible: { opacity: 1, y: 0, transition: { duration: duration.slower, ease: easing.editorial } },
+    visible: { opacity: 1, y: 0, transition: { duration: duration.slow, ease: easing.editorial } },
+  };
+
+  /**
+   * O título é o candidato a LCP enquanto não há fotografia — por isso entra
+   * antes dos demais elementos e com a duração mais curta da sequência.
+   */
+  const headline = {
+    hidden: { opacity: 0, y: 18 },
+    visible: { opacity: 1, y: 0, transition: { duration: duration.base, ease: easing.editorial } },
   };
 
   return (
@@ -37,10 +46,14 @@ export function Hero() {
       aria-label="Daniel Joias — o luxo está nos detalhes"
       className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink"
     >
-      {/* Fotografia */}
+      {/*
+        Fotografia — a entrada anima apenas `scale`.
+        Animar `opacity` a partir de 0 adiaria o LCP: o navegador só considera
+        o elemento pintado quando ele fica visível.
+      */}
       <motion.div
-        initial={reduceMotion ? undefined : { opacity: 0, scale: 1.06 }}
-        animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+        initial={reduceMotion ? undefined : { scale: 1.06 }}
+        animate={reduceMotion ? undefined : { scale: 1 }}
         transition={{ duration: 1.6, ease: easing.editorial }}
         className="absolute inset-0"
       >
@@ -82,7 +95,7 @@ export function Hero() {
 
         {/* Contraste tipográfico: serifada fina + sans em caixa alta. */}
         <motion.h1
-          variants={item}
+          variants={headline}
           className="mt-10 max-w-[18ch] font-display text-display-md font-light leading-[1.02] text-bone md:text-display-lg xl:text-display-xl"
         >
           O luxo está
