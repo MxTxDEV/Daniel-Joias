@@ -40,6 +40,23 @@ async function walk(dir) {
   return files;
 }
 
+/**
+ * Prefixos de slot que moram em subpastas.
+ * Um arquivo solto em public/images chamado `hero-principal.jpg` também vale
+ * como `hero/principal` — é o que permite subir fotografias arrastando pela
+ * interface do GitHub, onde não dá para criar pastas.
+ */
+const NESTED_PREFIXES = [
+  'hero', 'colecoes', 'menu', 'presentes', 'instagram', 'marca', 'produtos',
+  'casamento', 'categorias', 'materiais',
+];
+
+function aliasFor(slot) {
+  if (slot.includes('/')) return null;
+  const prefix = NESTED_PREFIXES.find((p) => slot.startsWith(`${p}-`));
+  return prefix ? `${prefix}/${slot.slice(prefix.length + 1)}` : null;
+}
+
 async function main() {
   const slots = {};
 
@@ -57,11 +74,14 @@ async function main() {
 
       if (!current || priority < current.priority) {
         const info = await stat(file);
-        slots[slot] = {
-          src: `/images/${relative}`,
-          bytes: info.size,
-          priority,
-        };
+        const entry = { src: `/images/${relative}`, bytes: info.size, priority };
+        slots[slot] = entry;
+
+        // `hero-principal.jpg` responde também como `hero/principal`.
+        const alias = aliasFor(slot);
+        if (alias && (!slots[alias] || priority < slots[alias].priority)) {
+          slots[alias] = entry;
+        }
       }
     }
   }
@@ -78,7 +98,8 @@ async function main() {
 
   await writeFile(OUTPUT, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
 
-  const count = Object.keys(manifest.slots).length;
+  // Conta arquivos, não entradas — um arquivo pode responder por dois nomes.
+  const count = new Set(Object.values(manifest.slots).map((entry) => entry.src)).size;
   console.log(
     count === 0
       ? '[imagens] Nenhuma fotografia encontrada em public/images — placeholders editoriais serão exibidos.'

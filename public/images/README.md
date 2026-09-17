@@ -24,6 +24,12 @@ A pasta `fotos/` não vai para o repositório.
 (`.avif`, `.webp`, `.jpg`, `.png`; para a logo, também `.svg`) e rode
 `npm run images:manifest`.
 
+**Subindo pela interface do GitHub** (onde não dá para criar subpastas): use o
+nome plano com hífen no lugar da barra. `hero-principal.jpg` vale como
+`hero/principal`, `colecoes-masculino.jpg` vale como `colecoes/masculino`, e
+assim por diante. Arquivos sem prefixo de pasta, como `editorial-01.jpg`,
+já ficam no lugar certo.
+
 ## Poucas fotos preenchem o site inteiro
 
 Nenhum slot precisa existir para o site ficar apresentável. Quando a
