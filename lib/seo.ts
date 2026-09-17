@@ -5,6 +5,9 @@ import { resolveImage, resolveRef } from '@/lib/images';
 import type { Product } from '@/types';
 
 export function absoluteUrl(pathname = '/'): string {
+  // Fotografias remotas já vêm com o endereço completo.
+  if (/^https?:\/\//.test(pathname)) return pathname;
+
   const base = siteConfig.url.replace(/\/$/, '');
   return `${base}${pathname.startsWith('/') ? pathname : `/${pathname}`}`;
 }

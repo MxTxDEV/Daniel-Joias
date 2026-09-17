@@ -5,6 +5,17 @@ const nextConfig = {
   images: {
     // AVIF/WebP são servidos automaticamente pelo next/image.
     formats: ['image/avif', 'image/webp'],
+    /**
+     * Domínios liberados para as fotografias temporárias de `data/remote-images.ts`.
+     * Quem baixa e converte é o otimizador da Vercel; o visitante recebe
+     * AVIF/WebP servido pelo próprio domínio do site.
+     */
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'images.pexels.com' },
+      { protocol: 'https', hostname: 'cdn.pixabay.com' },
+      { protocol: 'https', hostname: 'upload.wikimedia.org' },
+    ],
     // Larguras alinhadas aos breakpoints do design system.
     deviceSizes: [375, 390, 430, 768, 1024, 1280, 1440, 1920, 2560],
     imageSizes: [96, 160, 240, 320, 480, 640],

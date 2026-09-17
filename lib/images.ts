@@ -1,4 +1,5 @@
 import manifest from '@/data/image-manifest.json';
+import { remoteImages } from '@/data/remote-images';
 import type { ImageRef } from '@/types';
 
 interface ManifestEntry {
@@ -6,7 +7,19 @@ interface ManifestEntry {
   bytes: number;
 }
 
-const slots = manifest.slots as Record<string, ManifestEntry | undefined>;
+const localSlots = manifest.slots as Record<string, ManifestEntry | undefined>;
+
+/**
+ * Catálogo de imagens disponíveis.
+ * As fotografias locais (public/images) sobrescrevem as remotas, então
+ * publicar o arquivo oficial basta para aposentar a URL temporária.
+ */
+const slots: Record<string, ManifestEntry | undefined> = {
+  ...Object.fromEntries(
+    Object.entries(remoteImages).map(([slot, src]) => [slot, { src, bytes: 0 }]),
+  ),
+  ...localSlots,
+};
 
 /**
  * Resolve o `slot` de uma imagem para um caminho real em /public.
