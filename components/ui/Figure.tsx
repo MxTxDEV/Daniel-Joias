@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { RemoteImage } from '@/components/ui/RemoteImage';
 import { aspectClass, resolveRef, type AspectName } from '@/lib/images';
 import { cn } from '@/lib/cn';
 import type { ImageRef } from '@/types';
@@ -56,7 +57,18 @@ export function Figure({
         className,
       )}
     >
-      {src ? (
+      {src === null ? (
+        <PhotographyPlaceholder image={image} tone={tone} variant={placeholder} />
+      ) : src.startsWith('http') ? (
+        <RemoteImage
+          src={src}
+          alt={image.alt}
+          sizes={sizes}
+          priority={priority}
+          className={imageClassName}
+          fallback={<PhotographyPlaceholder image={image} tone={tone} variant={placeholder} />}
+        />
+      ) : (
         <Image
           src={src}
           alt={image.alt}
@@ -67,8 +79,6 @@ export function Figure({
           quality={82}
           className={cn('object-cover', imageClassName)}
         />
-      ) : (
-        <PhotographyPlaceholder image={image} tone={tone} variant={placeholder} />
       )}
     </div>
   );

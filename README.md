@@ -70,6 +70,10 @@ discreta na interface (rodapé, página de produto, seção de depoimentos):
 
 - **Fotografias** — ver [`public/images/README.md`](public/images/README.md).
   Cada imagem tem um *slot*; ao salvar o arquivo, ela entra no lugar do placeholder.
+  No momento o site é apresentado com fotografias temporárias do Unsplash,
+  mapeadas em [`data/remote-images.ts`](data/remote-images.ts) e servidas pelo
+  otimizador da Vercel. **Não são peças da Daniel Joias.** Publicar o arquivo
+  oficial em `public/images` aposenta a URL temporária automaticamente.
 - **Logo oficial** — salve `marca/logo-claro` e `marca/logo-escuro`; o header, o footer,
   o menu e o favicon passam a usá-la automaticamente, sem distorcer a arte.
 - **Catálogo** — `data/products.ts` traz registros de estrutura (`isPlaceholder: true`)
