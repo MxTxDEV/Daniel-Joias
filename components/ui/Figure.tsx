@@ -85,9 +85,29 @@ export function Figure({
 }
 
 /**
- * Placeholder de fotografia.
- * Deliberadamente sóbrio: descreve o shot esperado em vez de simular uma joia.
+ * Superfície usada enquanto a fotografia não existe.
+ *
+ * Por padrão é silenciosa: um campo de luz quente sobre o preto da marca,
+ * com grão fino e uma variação de posição derivada do próprio slot — duas
+ * superfícies vizinhas nunca ficam idênticas. Lê como direção de arte, não
+ * como imagem faltando.
+ *
+ * Para a produção das fotos, `NEXT_PUBLIC_PHOTO_BRIEFS=1` reativa o briefing
+ * de cada shot sobre a superfície.
  */
+const SHOW_BRIEFS = process.env.NEXT_PUBLIC_PHOTO_BRIEFS === '1';
+
+/** Variação estável por slot: muda o centro e a intensidade da luz. */
+function lightField(slot: string): { x: number; y: number; spread: number } {
+  let hash = 0;
+  for (let i = 0; i < slot.length; i += 1) hash = (hash * 31 + slot.charCodeAt(i)) % 10000;
+  return {
+    x: 30 + (hash % 41),
+    y: 22 + ((hash >> 3) % 33),
+    spread: 78 + ((hash >> 5) % 35),
+  };
+}
+
 function PhotographyPlaceholder({
   image,
   tone,
@@ -98,42 +118,41 @@ function PhotographyPlaceholder({
   variant: 'caption' | 'quiet';
 }) {
   const dark = tone === 'dark';
+  const { x, y, spread } = lightField(image.slot);
+
+  const surface = dark
+    ? `radial-gradient(${spread}% ${spread}% at ${x}% ${y}%, #232018 0%, #15130f 38%, #0b0a09 72%, #080808 100%)`
+    : `radial-gradient(${spread}% ${spread}% at ${x}% ${y}%, #FFFFFF 0%, #F7F4ED 40%, #EDE7DA 78%, #E4DCCB 100%)`;
 
   return (
     <div
       aria-hidden="true"
-      className={cn(
-        'photo-slot surface-grain absolute inset-0 flex items-center justify-center',
-        dark
-          ? 'bg-[radial-gradient(120%_90%_at_50%_0%,#1b1b1b_0%,#101010_45%,#080808_100%)]'
-          : 'bg-[radial-gradient(120%_90%_at_50%_0%,#FBFAF7_0%,#F1EDE4_50%,#E7E1D5_100%)]',
-      )}
+      className="surface-grain absolute inset-0 overflow-hidden"
+      style={{ backgroundImage: surface }}
     >
+      {/* Brilho quente muito sutil — o ouro da identidade, sem virar dourado. */}
       <div
-        className={cn(
-          'absolute inset-[6%] border-hairline',
-          dark ? 'border-gold/25' : 'border-gold-dark/25',
-        )}
+        className="absolute inset-0"
+        style={{
+          backgroundImage: dark
+            ? `radial-gradient(42% 42% at ${x}% ${y}%, rgba(198,161,91,0.16) 0%, rgba(198,161,91,0) 70%)`
+            : `radial-gradient(46% 46% at ${x}% ${y}%, rgba(198,161,91,0.14) 0%, rgba(198,161,91,0) 72%)`,
+        }}
       />
-      {variant === 'quiet' ? null : (
-        <div className="photo-slot-caption relative max-w-[22rem] flex-col items-center gap-4 px-6 text-center">
-          <svg
-            width="13"
-            height="13"
-            viewBox="0 0 13 13"
-            fill="none"
-            className={dark ? 'text-gold' : 'text-gold-text'}
-          >
-            <path d="M6.5 0.6 12.4 6.5 6.5 12.4 0.6 6.5Z" stroke="currentColor" strokeWidth="0.6" />
-          </svg>
-          <p
-            className={cn(
-              'eyebrow',
-              dark ? 'text-gold/85' : 'text-gold-text',
-            )}
-          >
-            Fotografia
-          </p>
+
+      {/* Vinheta: fecha as bordas e dá profundidade de estúdio. */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: dark
+            ? 'radial-gradient(120% 120% at 50% 45%, rgba(8,8,8,0) 42%, rgba(8,8,8,0.72) 100%)'
+            : 'radial-gradient(120% 120% at 50% 45%, rgba(8,8,8,0) 48%, rgba(8,8,8,0.10) 100%)',
+        }}
+      />
+
+      {SHOW_BRIEFS && variant === 'caption' ? (
+        <div className="photo-slot-caption absolute inset-0 flex-col items-center justify-center gap-4 px-6 text-center">
+          <p className={cn('eyebrow', dark ? 'text-gold/80' : 'text-gold-text')}>Fotografia</p>
           {image.brief ? (
             <p
               className={cn(
@@ -144,16 +163,11 @@ function PhotographyPlaceholder({
               {image.brief}
             </p>
           ) : null}
-          <p
-            className={cn(
-              'text-micro uppercase',
-              dark ? 'text-bone/40' : 'text-ink/45',
-            )}
-          >
+          <p className={cn('text-micro uppercase', dark ? 'text-bone/40' : 'text-ink/45')}>
             {image.slot}
           </p>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

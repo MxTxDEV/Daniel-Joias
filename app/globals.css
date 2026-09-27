@@ -142,15 +142,11 @@
    * Placeholder de fotografia: o briefing do shot só aparece quando o
    * espaço comporta a leitura — miniaturas e recortes pequenos ficam limpos.
    */
-  .photo-slot {
-    container-type: inline-size;
-  }
-
   .photo-slot-caption {
     display: none;
   }
 
-  @container (min-width: 15rem) {
+  @media (min-width: 640px) {
     .photo-slot-caption {
       display: flex;
     }
