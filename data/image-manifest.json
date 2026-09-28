@@ -1,3 +1,248 @@
 {
-  "slots": {}
+  "slots": {
+    "casamento/detalhe": {
+      "src": "/images/casamento/detalhe.jpg",
+      "bytes": 118560
+    },
+    "casamento/principal": {
+      "src": "/images/casamento/principal.jpg",
+      "bytes": 116324
+    },
+    "categorias/aliancas-01": {
+      "src": "/images/categorias/aliancas-01.jpg",
+      "bytes": 118560
+    },
+    "categorias/aliancas-02": {
+      "src": "/images/categorias/aliancas-02.jpg",
+      "bytes": 99782
+    },
+    "categorias/aneis-01": {
+      "src": "/images/categorias/aneis-01.jpg",
+      "bytes": 80407
+    },
+    "categorias/aneis-02": {
+      "src": "/images/categorias/aneis-02.jpg",
+      "bytes": 99782
+    },
+    "categorias/aneis-03": {
+      "src": "/images/categorias/aneis-03.jpg",
+      "bytes": 81972
+    },
+    "categorias/colares-01": {
+      "src": "/images/categorias/colares-01.jpg",
+      "bytes": 84981
+    },
+    "categorias/colares-02": {
+      "src": "/images/categorias/colares-02.jpg",
+      "bytes": 104403
+    },
+    "categorias/cordoes-01": {
+      "src": "/images/categorias/cordoes-01.jpg",
+      "bytes": 152841
+    },
+    "categorias/cordoes-02": {
+      "src": "/images/categorias/cordoes-02.jpg",
+      "bytes": 121919
+    },
+    "categorias/correntes-01": {
+      "src": "/images/categorias/correntes-01.jpg",
+      "bytes": 152841
+    },
+    "categorias/correntes-02": {
+      "src": "/images/categorias/correntes-02.jpg",
+      "bytes": 121919
+    },
+    "categorias/correntes-03": {
+      "src": "/images/categorias/correntes-03.jpg",
+      "bytes": 104403
+    },
+    "categorias/noivado-01": {
+      "src": "/images/categorias/noivado-01.jpg",
+      "bytes": 79554
+    },
+    "categorias/noivado-02": {
+      "src": "/images/categorias/noivado-02.jpg",
+      "bytes": 98404
+    },
+    "categorias/par-de-aliancas-01": {
+      "src": "/images/categorias/par-de-aliancas-01.jpg",
+      "bytes": 118560
+    },
+    "categorias/par-de-aliancas-02": {
+      "src": "/images/categorias/par-de-aliancas-02.jpg",
+      "bytes": 79554
+    },
+    "categorias/pulseiras-01": {
+      "src": "/images/categorias/pulseiras-01.jpg",
+      "bytes": 127088
+    },
+    "categorias/pulseiras-02": {
+      "src": "/images/categorias/pulseiras-02.jpg",
+      "bytes": 152841
+    },
+    "categorias/solitarios-01": {
+      "src": "/images/categorias/solitarios-01.jpg",
+      "bytes": 79554
+    },
+    "categorias/solitarios-02": {
+      "src": "/images/categorias/solitarios-02.jpg",
+      "bytes": 99782
+    },
+    "colecoes/casamento": {
+      "src": "/images/colecoes/casamento.jpg",
+      "bytes": 118560
+    },
+    "colecoes/feminino": {
+      "src": "/images/colecoes/feminino.jpg",
+      "bytes": 84981
+    },
+    "colecoes/mais-vendidos": {
+      "src": "/images/colecoes/mais-vendidos.jpg",
+      "bytes": 121919
+    },
+    "colecoes/masculino": {
+      "src": "/images/colecoes/masculino.jpg",
+      "bytes": 152841
+    },
+    "colecoes/novidades": {
+      "src": "/images/colecoes/novidades.jpg",
+      "bytes": 80407
+    },
+    "colecoes/ouro": {
+      "src": "/images/colecoes/ouro.jpg",
+      "bytes": 259314
+    },
+    "colecoes/prata": {
+      "src": "/images/colecoes/prata.jpg",
+      "bytes": 64708
+    },
+    "colecoes/presentes": {
+      "src": "/images/colecoes/presentes.jpg",
+      "bytes": 64113
+    },
+    "editorial-01": {
+      "src": "/images/editorial-01.jpg",
+      "bytes": 99782
+    },
+    "editorial-02": {
+      "src": "/images/editorial-02.jpg",
+      "bytes": 121919
+    },
+    "editorial-03": {
+      "src": "/images/editorial-03.jpg",
+      "bytes": 104403
+    },
+    "editorial-04": {
+      "src": "/images/editorial-04.jpg",
+      "bytes": 81972
+    },
+    "editorial-05": {
+      "src": "/images/editorial-05.jpg",
+      "bytes": 127088
+    },
+    "editorial-06": {
+      "src": "/images/editorial-06.jpg",
+      "bytes": 98404
+    },
+    "editorial-07": {
+      "src": "/images/editorial-07.jpg",
+      "bytes": 79554
+    },
+    "editorial-08": {
+      "src": "/images/editorial-08.jpg",
+      "bytes": 64113
+    },
+    "editorial-09": {
+      "src": "/images/editorial-09.jpg",
+      "bytes": 152841
+    },
+    "editorial-10": {
+      "src": "/images/editorial-10.jpg",
+      "bytes": 84981
+    },
+    "editorial-11": {
+      "src": "/images/editorial-11.jpg",
+      "bytes": 80407
+    },
+    "hero/principal": {
+      "src": "/images/hero/principal.jpg",
+      "bytes": 115073
+    },
+    "instagram/01": {
+      "src": "/images/instagram/01.jpg",
+      "bytes": 52795
+    },
+    "instagram/02": {
+      "src": "/images/instagram/02.jpg",
+      "bytes": 64693
+    },
+    "instagram/03": {
+      "src": "/images/instagram/03.jpg",
+      "bytes": 78838
+    },
+    "instagram/04": {
+      "src": "/images/instagram/04.jpg",
+      "bytes": 53244
+    },
+    "instagram/05": {
+      "src": "/images/instagram/05.jpg",
+      "bytes": 41952
+    },
+    "instagram/06": {
+      "src": "/images/instagram/06.jpg",
+      "bytes": 101894
+    },
+    "marca/atelier": {
+      "src": "/images/marca/atelier.jpg",
+      "bytes": 98404
+    },
+    "materiais/ouro-01": {
+      "src": "/images/materiais/ouro-01.jpg",
+      "bytes": 104403
+    },
+    "materiais/ouro-02": {
+      "src": "/images/materiais/ouro-02.jpg",
+      "bytes": 121919
+    },
+    "materiais/prata-01": {
+      "src": "/images/materiais/prata-01.jpg",
+      "bytes": 81972
+    },
+    "menu/casamento": {
+      "src": "/images/menu/casamento.jpg",
+      "bytes": 118560
+    },
+    "menu/feminino": {
+      "src": "/images/menu/feminino.jpg",
+      "bytes": 84981
+    },
+    "menu/masculino": {
+      "src": "/images/menu/masculino.jpg",
+      "bytes": 80407
+    },
+    "presentes/aniversario": {
+      "src": "/images/presentes/aniversario.jpg",
+      "bytes": 64113
+    },
+    "presentes/data-especial": {
+      "src": "/images/presentes/data-especial.jpg",
+      "bytes": 79554
+    },
+    "presentes/para-ela": {
+      "src": "/images/presentes/para-ela.jpg",
+      "bytes": 84981
+    },
+    "presentes/para-ele": {
+      "src": "/images/presentes/para-ele.jpg",
+      "bytes": 152841
+    },
+    "presentes/pedido-de-casamento": {
+      "src": "/images/presentes/pedido-de-casamento.jpg",
+      "bytes": 118560
+    },
+    "presentes/pedido-de-namoro": {
+      "src": "/images/presentes/pedido-de-namoro.jpg",
+      "bytes": 98404
+    }
+  }
 }

@@ -55,6 +55,20 @@ lazy loading. Nenhum componente precisa ser alterado.
 > O manifest (`data/image-manifest.json`) é regenerado automaticamente em `predev`
 > e `prebuild`. Não edite o arquivo à mão.
 
+## ⚠ Estado atual: imagens geradas por IA
+
+O site está publicado com fotografias **geradas por IA** (Canva/Nano Banana),
+não fotografia real das peças da Daniel Joias. Foram usadas como recurso de
+última instância, depois de duas tentativas sem sucesso: o ambiente de
+desenvolvimento não tem acesso à internet para baixar fotos de bancos de
+imagem, e um link de download do Unsplash testado em produção também falhou.
+
+Cada arquivo em `public/images` marcado abaixo como `[IA]` deve ser
+substituído por fotografia real antes de este site ser tratado como produto
+final — é exatamente o cenário para o qual o sistema de slots foi projetado:
+salve o arquivo oficial por cima do provisório e o site atualiza sozinho,
+sem tocar em código.
+
 ## Especificação técnica
 
 | Item | Recomendação |
